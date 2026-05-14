@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prayag Institute of Technology and Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="site-page">
+<main class="site-shell">
+  <header class="topbar portal-topbar">
+    <div>
+      <span class="eyebrow">College Website</span>
+      <h1>Prayag Institute of Technology and Management</h1>
+      <p class="topbar-copy">A basic interactive campus website with student and teacher registration connected to the database.</p>
+    </div>
+    <div class="action-row">
+      <a class="btn btn-primary btn-inline" href="add-student.html">Add Student</a>
+      <a class="btn btn-primary btn-inline" href="add-teacher.html">Add Teacher</a>
+      <a class="btn btn-soft btn-inline" href="index.html">Back To Login</a>
+    </div>
+  </header>
+
+  <div id="portal-message" class="status-banner" hidden></div>
+
+  <section class="hero portal-hero">
+    <div class="hero-copy">
+      <span class="eyebrow">Welcome</span>
+      <h1 id="welcome-heading">Welcome to the college portal.</h1>
+      <p>
+        Use the top buttons to add a student or teacher. After submitting those forms,
+        the data is stored in the database and you are returned to this college website.
+      </p>
+      <div class="hero-cards">
+        <article class="hero-card">
+          <h3>Admissions</h3>
+          <p>Maintain student registration details in a clean and simple way.</p>
+        </article>
+        <article class="hero-card">
+          <h3>Faculty Records</h3>
+          <p>Store teacher department, specialization, and qualification details.</p>
+        </article>
+        <article class="hero-card">
+          <h3>Portal Access</h3>
+          <p>Returning users can log in and continue from the same website experience.</p>
+        </article>
+      </div>
+    </div>
+    <div class="info-panel portal-panel">
+      <h2>Quick Links</h2>
+      <div class="link-list">
+        <a href="add-student.html">Open Student Form</a>
+        <a href="add-teacher.html">Open Teacher Form</a>
+        <a href="student-dashboard.html">Student Dashboard</a>
+        <a href="teacher-dashboard.html">Teacher Dashboard</a>
+        <a href="admin-dashboard.html">Admin Dashboard</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-grid">
+    <article class="info-panel">
+      <h2>About Prayag Institute</h2>
+      <p>This portal is designed as a simple college website for registrations, faculty records, and role-based access.</p>
+    </article>
+    <article class="info-panel">
+      <h2>Database Connected</h2>
+      <p>All student and teacher form submissions are stored using the backend database configuration.</p>
+    </article>
+    <article class="info-panel">
+      <h2>Expandable Structure</h2>
+      <p>This basic UI can later be extended with courses, notices, attendance, and placement content.</p>
+    </article>
+  </section>
+</main>
+
+<script src="portal.js"></script>
+</body>
+</html>

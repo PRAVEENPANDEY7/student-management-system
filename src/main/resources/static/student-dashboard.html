@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - Prayag Institute of Technology and Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+<main class="dashboard-shell">
+  <header class="topbar">
+    <div>
+      <span class="eyebrow">Student Dashboard</span>
+      <h1>Prayag Institute of Technology and Management</h1>
+      <p class="topbar-copy">View the student profile stored in the college database.</p>
+    </div>
+    <button class="btn btn-danger btn-inline" onclick="logout()">Logout</button>
+  </header>
+
+  <div id="student-status" class="status-banner" hidden></div>
+
+  <section class="panel profile-panel">
+    <div class="panel-head">
+      <div>
+        <h2>Student Profile</h2>
+        <p>Your student registration details.</p>
+      </div>
+    </div>
+    <div class="profile-grid" id="profile-container"></div>
+  </section>
+
+  <section class="info-grid compact">
+    <article class="info-panel">
+      <h2>Campus Note</h2>
+      <p>Keep your login safe. This profile is loaded directly from the saved student record.</p>
+    </article>
+    <article class="info-panel">
+      <h2>Academic Access</h2>
+      <p>This basic portal can be extended later for attendance, subjects, notices, and results.</p>
+    </article>
+  </section>
+</main>
+
+<script src="student.js"></script>
+</body>
+</html>

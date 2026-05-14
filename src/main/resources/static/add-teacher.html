@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register As Teacher - Prayag Institute of Technology and Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="site-page">
+<main class="site-shell narrow-shell">
+  <header class="topbar portal-topbar">
+    <div>
+      <span class="eyebrow">Teacher Registration</span>
+      <h1>Register As Teacher</h1>
+      <p class="topbar-copy">Fill the form, review the details, edit if required, and then save to the database.</p>
+    </div>
+    <div class="action-row">
+      <a class="btn btn-soft btn-inline" href="http://localhost:8083/index.html">Back To Home</a>
+    </div>
+  </header>
+
+  <section class="auth-card standalone-card">
+    <div id="form-message" class="status-banner" hidden></div>
+    <form id="teacher-add-form" class="form-stack" method="post" action="http://localhost:8083/web/register/teacher">
+      <div class="input-group">
+        <label for="teacher-name">Full Name</label>
+        <input type="text" id="teacher-name" name="name" placeholder="Teacher full name" required>
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <label for="teacher-email">Email</label>
+          <input type="email" id="teacher-email" name="email" placeholder="teacher@email.com" required>
+        </div>
+        <div class="input-group">
+          <label for="teacher-department">Department</label>
+          <input type="text" id="teacher-department" name="department" placeholder="Department" required>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <label for="teacher-specialization">Specialization</label>
+          <input type="text" id="teacher-specialization" name="specialization" placeholder="Specialization" required>
+        </div>
+        <div class="input-group">
+          <label for="teacher-qualification">Qualification</label>
+          <input type="text" id="teacher-qualification" name="qualification" placeholder="Qualification" required>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <label for="teacher-username">Username</label>
+          <input type="text" id="teacher-username" name="username" placeholder="Username" required>
+        </div>
+        <div class="input-group">
+          <label for="teacher-password">Password</label>
+          <input type="password" id="teacher-password" name="password" minlength="6" placeholder="Password" required>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Review Details</button>
+    </form>
+
+    <section id="review-card" class="review-card" hidden>
+      <h2>Review Teacher Details</h2>
+      <div id="review-content" class="review-grid"></div>
+      <div class="action-row review-actions">
+        <button id="edit-button" class="btn btn-soft btn-inline" type="button">Edit Details</button>
+        <button id="confirm-button" class="btn btn-primary btn-inline" type="button">Save To Database</button>
+      </div>
+    </section>
+  </section>
+</main>
+
+<script src="forms.js"></script>
+</body>
+</html>

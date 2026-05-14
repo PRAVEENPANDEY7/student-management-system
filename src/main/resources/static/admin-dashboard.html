@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Prayag Institute of Technology and Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+<main class="dashboard-shell">
+  <header class="topbar">
+    <div>
+      <span class="eyebrow">Admin Dashboard</span>
+      <h1>Prayag Institute of Technology and Management</h1>
+      <p class="topbar-copy">Manage student registrations, teacher registrations, and login records.</p>
+    </div>
+    <button class="btn btn-danger btn-inline" onclick="logout()">Logout</button>
+  </header>
+
+  <section class="stats-grid">
+    <article class="stat-card">
+      <span class="stat-label">Students</span>
+      <strong id="student-count">0</strong>
+    </article>
+    <article class="stat-card">
+      <span class="stat-label">Teachers</span>
+      <strong id="teacher-count">0</strong>
+    </article>
+    <article class="stat-card">
+      <span class="stat-label">Login Logs</span>
+      <strong id="log-count">0</strong>
+    </article>
+  </section>
+
+  <div id="admin-status" class="status-banner" hidden></div>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <h2>Registered Students</h2>
+        <p>Student applications saved in the database.</p>
+      </div>
+      <input id="student-search" class="search-input" type="search" placeholder="Search students">
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Course</th><th>Action</th></tr>
+        </thead>
+        <tbody id="student-table-body"></tbody>
+      </table>
+    </div>
+    <p id="student-empty" class="empty-state" hidden>No students available.</p>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <h2>Registered Teachers</h2>
+        <p>Faculty registrations saved in the database.</p>
+      </div>
+      <input id="teacher-search" class="search-input" type="search" placeholder="Search teachers">
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Department</th><th>Action</th></tr>
+        </thead>
+        <tbody id="teacher-table-body"></tbody>
+      </table>
+    </div>
+    <p id="teacher-empty" class="empty-state" hidden>No teachers available.</p>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <h2>Login Activity</h2>
+        <p>Successful portal logins across all roles.</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+        <tr><th>Username</th><th>Role</th><th>Login Time</th></tr>
+        </thead>
+        <tbody id="logs-table-body"></tbody>
+      </table>
+    </div>
+    <p id="logs-empty" class="empty-state" hidden>No login logs recorded yet.</p>
+  </section>
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>

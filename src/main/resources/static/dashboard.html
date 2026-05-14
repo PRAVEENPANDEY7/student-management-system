@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Prayag</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dash-layout">
+<div class="dashboard-container">
+  <div class="navbar">
+    <div class="navbar-brand">Prayag Group of Institutes - Admin Portal</div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="card">
+    <h2>Student Roster</h2>
+    <table>
+      <thead>
+      <tr><th>ID</th><th>Name</th><th>Email</th><th>Course</th><th>Action</th></tr>
+      </thead>
+      <tbody id="student-table-body"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Login Logs</h2>
+    <table>
+      <thead>
+      <tr><th>Username</th><th>Role</th><th>Time</th></tr>
+      </thead>
+      <tbody id="logs-table-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

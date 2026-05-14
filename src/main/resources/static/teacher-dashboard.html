@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Dashboard - Prayag Institute of Technology and Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+<main class="dashboard-shell">
+  <header class="topbar">
+    <div>
+      <span class="eyebrow">Teacher Dashboard</span>
+      <h1>Prayag Institute of Technology and Management</h1>
+      <p class="topbar-copy">View the faculty profile stored in the college database.</p>
+    </div>
+    <button class="btn btn-danger btn-inline" onclick="logout()">Logout</button>
+  </header>
+
+  <div id="teacher-status" class="status-banner" hidden></div>
+
+  <section class="panel profile-panel">
+    <div class="panel-head">
+      <div>
+        <h2>Teacher Profile</h2>
+        <p>Your faculty registration details.</p>
+      </div>
+    </div>
+    <div class="profile-grid" id="profile-container"></div>
+  </section>
+
+  <section class="info-grid compact">
+    <article class="info-panel">
+      <h2>Faculty Access</h2>
+      <p>This portal currently stores faculty data and profile access securely by role.</p>
+    </article>
+    <article class="info-panel">
+      <h2>Next Extensions</h2>
+      <p>You can later add class schedules, subject allocation, and notice management for teachers.</p>
+    </article>
+  </section>
+</main>
+
+<script src="teacher.js"></script>
+</body>
+</html>

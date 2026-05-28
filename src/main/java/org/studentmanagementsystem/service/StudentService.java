@@ -17,6 +17,7 @@ public class StudentService {
     @Autowired private StudentRepository studentRepository;
     @Autowired private UserRepository userRepository;
     @Autowired private PasswordEncoder passwordEncoder;
+    @Autowired private AcademicService academicService;
 
     public Optional<Student> getStudentByUsername(String username) {
         Optional<User> user = userRepository.findByUsername(username);
@@ -46,6 +47,8 @@ public class StudentService {
         student.setCourse(request.getCourse());
         student.setUser(user);
 
-        return studentRepository.save(student);
+        Student saved = studentRepository.save(student);
+        academicService.enrollStudentInMatchingSubjects(saved);
+        return saved;
     }
 }

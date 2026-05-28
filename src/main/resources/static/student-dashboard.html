@@ -3,40 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Dashboard - Prayag Institute of Technology and Management</title>
+  <title>Student Workspace - Prayag Institute of Technology and Management</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="dashboard-page">
 <main class="dashboard-shell">
   <header class="topbar">
     <div>
-      <span class="eyebrow">Student Dashboard</span>
-      <h1>Prayag Institute of Technology and Management</h1>
-      <p class="topbar-copy">View the student profile stored in the college database.</p>
+      <span class="eyebrow">Student Workspace</span>
+      <h1 id="student-heading">Academic dashboard</h1>
+      <p class="topbar-copy">Track subjects, teachers, attendance, and notes published by faculty.</p>
     </div>
     <button class="btn btn-danger btn-inline" onclick="logout()">Logout</button>
   </header>
 
   <div id="student-status" class="status-banner" hidden></div>
 
-  <section class="panel profile-panel">
-    <div class="panel-head">
-      <div>
-        <h2>Student Profile</h2>
-        <p>Your student registration details.</p>
+  <section class="stats-grid" id="student-stats"></section>
+
+  <section class="dashboard-grid">
+    <article class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>My Subjects</h2>
+          <p>Subject allocation with assigned teachers.</p>
+        </div>
       </div>
-    </div>
-    <div class="profile-grid" id="profile-container"></div>
+      <div id="subject-list" class="card-list"></div>
+    </article>
+
+    <article class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Attendance Summary</h2>
+          <p>Your attendance percentage subject by subject.</p>
+        </div>
+      </div>
+      <div id="attendance-summary" class="card-list"></div>
+    </article>
   </section>
 
-  <section class="info-grid compact">
-    <article class="info-panel">
-      <h2>Campus Note</h2>
-      <p>Keep your login safe. This profile is loaded directly from the saved student record.</p>
+  <section class="dashboard-grid">
+    <article class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Teacher Notes</h2>
+          <p>Study notes uploaded by your subject teachers.</p>
+        </div>
+      </div>
+      <div id="notes-list" class="card-list"></div>
     </article>
-    <article class="info-panel">
-      <h2>Academic Access</h2>
-      <p>This basic portal can be extended later for attendance, subjects, notices, and results.</p>
+
+    <article class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Recent Attendance</h2>
+          <p>Latest class attendance records.</p>
+        </div>
+      </div>
+      <div id="recent-attendance" class="card-list"></div>
     </article>
   </section>
 </main>

@@ -246,6 +246,10 @@ body {
 }
 
 .input-group input,
+.input-group select,
+.input-group textarea,
+.attendance-status,
+.attendance-remarks,
 .search-input {
   width: 100%;
   padding: 12px 14px;
@@ -257,9 +261,18 @@ body {
 }
 
 .input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus,
+.attendance-status:focus,
+.attendance-remarks:focus,
 .search-input:focus {
   outline: 2px solid rgba(138, 21, 56, 0.14);
   border-color: var(--primary);
+}
+
+.input-group textarea {
+  resize: vertical;
+  min-height: 120px;
 }
 
 .btn {
@@ -502,6 +515,98 @@ th {
   margin: 0;
   font-weight: 700;
   font-size: 1.02rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.card-list {
+  display: grid;
+  gap: 12px;
+}
+
+.record-card,
+.attendance-card,
+.note-card {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface-soft);
+}
+
+.record-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+}
+
+.record-card strong,
+.attendance-card strong,
+.note-card h3 {
+  display: block;
+  margin: 0 0 6px;
+}
+
+.record-card p,
+.attendance-card p,
+.note-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.attendance-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.attendance-card-head span {
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.attendance-meter {
+  height: 10px;
+  margin: 12px 0 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #f1e4d3;
+}
+
+.attendance-meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--success), var(--accent));
+}
+
+.note-card {
+  display: grid;
+  gap: 10px;
+}
+
+.note-card pre {
+  max-height: 180px;
+  overflow: auto;
+  margin: 0;
+  padding: 14px;
+  white-space: pre-wrap;
+  border-radius: 12px;
+  background: #fffdfa;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.note-card a {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .standalone-card {
@@ -957,6 +1062,7 @@ th {
   .hero,
   .info-grid,
   .stats-grid,
+  .dashboard-grid,
   .info-grid.compact,
   .showcase-grid,
   .compact-grid,

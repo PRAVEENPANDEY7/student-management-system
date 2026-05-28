@@ -1,6 +1,7 @@
 package org.studentmanagementsystem.controller;
 
 import org.studentmanagementsystem.entity.Student;
+import org.studentmanagementsystem.service.AcademicService;
 import org.studentmanagementsystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private AcademicService academicService;
+
     @GetMapping("/profile")
     public ResponseEntity<?> getProfile() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -24,5 +28,11 @@ public class StudentController {
         Optional<Student> student = studentService.getStudentByUsername(username);
         return student.<ResponseEntity<?>>map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/dashboard")
+    public ResponseEntity<?> getDashboard() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return ResponseEntity.ok(academicService.getStudentDashboard(auth.getName()));
     }
 }

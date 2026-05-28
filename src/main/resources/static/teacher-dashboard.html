@@ -3,40 +3,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teacher Dashboard - Prayag Institute of Technology and Management</title>
+  <title>Teacher Workspace - Prayag Institute of Technology and Management</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="dashboard-page">
 <main class="dashboard-shell">
   <header class="topbar">
     <div>
-      <span class="eyebrow">Teacher Dashboard</span>
-      <h1>Prayag Institute of Technology and Management</h1>
-      <p class="topbar-copy">View the faculty profile stored in the college database.</p>
+      <span class="eyebrow">Teacher Workspace</span>
+      <h1 id="teacher-heading">Faculty control room</h1>
+      <p class="topbar-copy">Create subjects, take attendance, and publish study notes for enrolled students.</p>
     </div>
     <button class="btn btn-danger btn-inline" onclick="logout()">Logout</button>
   </header>
 
   <div id="teacher-status" class="status-banner" hidden></div>
 
-  <section class="panel profile-panel">
-    <div class="panel-head">
-      <div>
-        <h2>Teacher Profile</h2>
-        <p>Your faculty registration details.</p>
+  <section class="stats-grid" id="teacher-stats"></section>
+
+  <section class="dashboard-grid">
+    <article class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Create Subject</h2>
+          <p>Add a subject for your department. Existing students with the same course are enrolled automatically.</p>
+        </div>
       </div>
-    </div>
-    <div class="profile-grid" id="profile-container"></div>
+      <form id="subject-form" class="form-stack">
+        <div class="input-row">
+          <div class="input-group">
+            <label for="subject-code">Subject Code</label>
+            <input id="subject-code" placeholder="CSE101" required>
+          </div>
+          <div class="input-group">
+            <label for="subject-name">Subject Name</label>
+            <input id="subject-name" placeholder="Database Management" required>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label for="subject-course">Course</label>
+            <input id="subject-course" placeholder="B.Tech CSE" required>
+          </div>
+          <div class="input-group">
+            <label for="subject-semester">Semester</label>
+            <input id="subject-semester" placeholder="Semester 4">
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Create Subject</button>
+      </form>
+    </article>
+
+    <article class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Upload Notes</h2>
+          <p>Publish class notes to students enrolled in the selected subject.</p>
+        </div>
+      </div>
+      <form id="note-form" class="form-stack">
+        <div class="input-group">
+          <label for="note-subject">Subject</label>
+          <select id="note-subject" required></select>
+        </div>
+        <div class="input-group">
+          <label for="note-title">Title</label>
+          <input id="note-title" placeholder="Unit 1 notes" required>
+        </div>
+        <div class="input-group">
+          <label for="note-description">Short Description</label>
+          <input id="note-description" placeholder="Important formulas and examples">
+        </div>
+        <div class="input-group">
+          <label for="note-content">Notes Content</label>
+          <textarea id="note-content" rows="6" placeholder="Write the notes here..." required></textarea>
+        </div>
+        <div class="input-group">
+          <label for="note-link">Attachment Link</label>
+          <input id="note-link" placeholder="https://drive.google.com/...">
+        </div>
+        <button class="btn btn-primary" type="submit">Publish Notes</button>
+      </form>
+    </article>
   </section>
 
-  <section class="info-grid compact">
-    <article class="info-panel">
-      <h2>Faculty Access</h2>
-      <p>This portal currently stores faculty data and profile access securely by role.</p>
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <h2>Take Attendance</h2>
+        <p>Select a subject and mark each enrolled student as present, absent, or late.</p>
+      </div>
+    </div>
+    <form id="attendance-form" class="form-stack">
+      <div class="input-row">
+        <div class="input-group">
+          <label for="attendance-subject">Subject</label>
+          <select id="attendance-subject" required></select>
+        </div>
+        <div class="input-group">
+          <label for="attendance-date">Class Date</label>
+          <input id="attendance-date" type="date" required>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="attendance-topic">Topic</label>
+        <input id="attendance-topic" placeholder="Normalization, joins, lab work">
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+          <tr>
+            <th>Student</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Remarks</th>
+          </tr>
+          </thead>
+          <tbody id="attendance-rows"></tbody>
+        </table>
+      </div>
+      <p id="attendance-empty" class="empty-state" hidden>No enrolled students for this subject yet.</p>
+      <button class="btn btn-primary" type="submit">Save Attendance</button>
+    </form>
+  </section>
+
+  <section class="dashboard-grid">
+    <article class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Your Subjects</h2>
+          <p>Subjects currently assigned to this teacher account.</p>
+        </div>
+      </div>
+      <div id="subject-list" class="card-list"></div>
     </article>
-    <article class="info-panel">
-      <h2>Next Extensions</h2>
-      <p>You can later add class schedules, subject allocation, and notice management for teachers.</p>
+    <article class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Recent Activity</h2>
+          <p>Latest attendance sessions and study notes.</p>
+        </div>
+      </div>
+      <div id="activity-list" class="card-list"></div>
     </article>
   </section>
 </main>

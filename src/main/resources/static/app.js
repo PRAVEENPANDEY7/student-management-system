@@ -75,6 +75,18 @@ function goToPortal(message, type = 'success') {
   window.location.href = 'college-portal.html';
 }
 
+function goToRoleDashboard(role) {
+  if (role === 'ROLE_ADMIN') {
+    window.location.href = 'admin-dashboard.html';
+    return;
+  }
+  if (role === 'ROLE_TEACHER') {
+    window.location.href = 'teacher-dashboard.html';
+    return;
+  }
+  window.location.href = 'student-dashboard.html';
+}
+
 loginForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   clearStatus();
@@ -93,7 +105,7 @@ loginForm.addEventListener('submit', async (event) => {
     localStorage.setItem('token', data.token);
     localStorage.setItem('role', data.role);
     localStorage.setItem('username', username);
-    goToPortal(`Welcome back, ${username}.`, 'success');
+    goToRoleDashboard(data.role);
   } catch (error) {
     setStatus(error.message || 'Invalid credentials.', 'error');
   }

@@ -38,4 +38,9 @@ public class AdminController {
     public ResponseEntity<?> getLogs() {
         return ResponseEntity.ok(adminService.getAllLogs());
     }
+
+    @GetMapping("/academic")
+    public ResponseEntity<?> getAcademicOverview() {
+        return ResponseEntity.ok(adminService.getAcademicOverview());
+    }
 }

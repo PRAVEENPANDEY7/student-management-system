@@ -30,6 +30,18 @@
       <span class="stat-label">Login Logs</span>
       <strong id="log-count">0</strong>
     </article>
+    <article class="stat-card">
+      <span class="stat-label">Subjects</span>
+      <strong id="subject-count">0</strong>
+    </article>
+    <article class="stat-card">
+      <span class="stat-label">Attendance</span>
+      <strong id="attendance-count">0</strong>
+    </article>
+    <article class="stat-card">
+      <span class="stat-label">Notes</span>
+      <strong id="note-count">0</strong>
+    </article>
   </section>
 
   <div id="admin-status" class="status-banner" hidden></div>
@@ -70,6 +82,46 @@
       </table>
     </div>
     <p id="teacher-empty" class="empty-state" hidden>No teachers available.</p>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <h2>Academic Overview</h2>
+        <p>Subjects, assigned teachers, and enrolled students used by attendance and notes.</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+        <tr><th>Code</th><th>Subject</th><th>Course</th><th>Teacher</th><th>Students</th></tr>
+        </thead>
+        <tbody id="subjects-table-body"></tbody>
+      </table>
+    </div>
+    <p id="subjects-empty" class="empty-state" hidden>No subjects yet. A teacher must create a subject before attendance can be taken.</p>
+  </section>
+
+  <section class="dashboard-grid">
+    <article class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Recent Attendance</h2>
+          <p>Latest attendance sessions submitted by teachers.</p>
+        </div>
+      </div>
+      <div id="admin-attendance-list" class="card-list"></div>
+    </article>
+
+    <article class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Recent Notes</h2>
+          <p>Latest notes uploaded by teachers.</p>
+        </div>
+      </div>
+      <div id="admin-notes-list" class="card-list"></div>
+    </article>
   </section>
 
   <section class="panel">

@@ -99,6 +99,9 @@ function renderAttendanceRows() {
   if (!subject || subject.students.length === 0) {
     rows.innerHTML = '';
     empty.hidden = false;
+    empty.textContent = subject
+      ? `No students are enrolled in ${subject.name}. Student course must match "${subject.course}" for automatic enrollment.`
+      : 'Create a subject first, then matching-course students will appear here.';
     return;
   }
 
@@ -131,6 +134,9 @@ function renderSubjects(subjects) {
       <div>
         <strong>${escapeHtml(subject.code)} - ${escapeHtml(subject.name)}</strong>
         <p>${escapeHtml(subject.course)}${subject.semester ? `, ${escapeHtml(subject.semester)}` : ''}</p>
+        <p>${subject.students.length
+          ? `Enrolled: ${subject.students.map((student) => escapeHtml(student.name)).join(', ')}`
+          : `No enrolled students yet. Add students with course "${escapeHtml(subject.course)}".`}</p>
       </div>
       <span class="pill-tag">${subject.students.length} students</span>
     </article>

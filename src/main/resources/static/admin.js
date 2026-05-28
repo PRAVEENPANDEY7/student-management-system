@@ -4,11 +4,15 @@ const adminStatus = document.getElementById('admin-status');
 const studentBody = document.getElementById('student-table-body');
 const teacherBody = document.getElementById('teacher-table-body');
 const logsBody = document.getElementById('logs-table-body');
+const subjectsBody = document.getElementById('subjects-table-body');
 const studentEmpty = document.getElementById('student-empty');
 const teacherEmpty = document.getElementById('teacher-empty');
 const logsEmpty = document.getElementById('logs-empty');
+const subjectsEmpty = document.getElementById('subjects-empty');
 const studentSearch = document.getElementById('student-search');
 const teacherSearch = document.getElementById('teacher-search');
+const adminAttendanceList = document.getElementById('admin-attendance-list');
+const adminNotesList = document.getElementById('admin-notes-list');
 
 let studentsCache = [];
 let teachersCache = [];
@@ -27,6 +31,15 @@ function clearStatus() {
   adminStatus.hidden = true;
   adminStatus.textContent = '';
   adminStatus.className = 'status-banner';
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
 }
 
 async function apiFetch(url, options = {}) {
@@ -63,9 +76,9 @@ function renderStudents(students) {
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${student.id}</td>
-      <td>${student.name}</td>
-      <td>${student.email}</td>
-      <td>${student.course || '-'}</td>
+      <td>${escapeHtml(student.name)}</td>
+      <td>${escapeHtml(student.email)}</td>
+      <td>${escapeHtml(student.course || '-')}</td>
       <td><button class="btn btn-danger btn-small" data-student-id="${student.id}">Delete</button></td>
     `;
     studentBody.appendChild(row);
@@ -81,9 +94,9 @@ function renderTeachers(teachers) {
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${teacher.id}</td>
-      <td>${teacher.name}</td>
-      <td>${teacher.email}</td>
-      <td>${teacher.department || '-'}</td>
+      <td>${escapeHtml(teacher.name)}</td>
+      <td>${escapeHtml(teacher.email)}</td>
+      <td>${escapeHtml(teacher.department || '-')}</td>
       <td><button class="btn btn-danger btn-small" data-teacher-id="${teacher.id}">Delete</button></td>
     `;
     teacherBody.appendChild(row);
@@ -129,12 +142,61 @@ async function loadLogs() {
   logs.forEach((log) => {
     const row = document.createElement('tr');
     row.innerHTML = `
-      <td>${log.username}</td>
-      <td>${log.role}</td>
+      <td>${escapeHtml(log.username)}</td>
+      <td>${escapeHtml(log.role)}</td>
       <td>${new Date(log.loginTime).toLocaleString()}</td>
     `;
     logsBody.appendChild(row);
   });
+}
+
+async function loadAcademicOverview() {
+  const academic = await apiFetch('/api/admin/academic');
+  document.getElementById('subject-count').textContent = academic.subjectCount;
+  document.getElementById('attendance-count').textContent = academic.attendanceSessionCount;
+  document.getElementById('note-count').textContent = academic.noteCount;
+
+  subjectsBody.innerHTML = '';
+  subjectsEmpty.hidden = academic.subjects.length !== 0;
+  academic.subjects.forEach((subject) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${escapeHtml(subject.code)}</td>
+      <td>${escapeHtml(subject.name)}</td>
+      <td>${escapeHtml(subject.course)}${subject.semester ? `, ${escapeHtml(subject.semester)}` : ''}</td>
+      <td>${escapeHtml(subject.teacher)}</td>
+      <td>${subject.students}</td>
+    `;
+    subjectsBody.appendChild(row);
+  });
+
+  if (academic.recentAttendance.length === 0) {
+    adminAttendanceList.innerHTML = '<p class="empty-state">No attendance has been submitted yet. Login as teacher, create a subject, then mark attendance.</p>';
+  } else {
+    adminAttendanceList.innerHTML = academic.recentAttendance.map((session) => `
+      <article class="record-card">
+        <div>
+          <strong>${escapeHtml(session.subjectCode)} - ${escapeHtml(session.subject)}</strong>
+          <p>${escapeHtml(session.classDate)} ${session.topic ? `- ${escapeHtml(session.topic)}` : ''}</p>
+          <p>${escapeHtml(session.teacher)} marked ${session.records} students.</p>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  if (academic.recentNotes.length === 0) {
+    adminNotesList.innerHTML = '<p class="empty-state">No notes uploaded yet. Login as teacher and publish notes from the teacher workspace.</p>';
+  } else {
+    adminNotesList.innerHTML = academic.recentNotes.map((note) => `
+      <article class="record-card">
+        <div>
+          <strong>${escapeHtml(note.title)}</strong>
+          <p>${escapeHtml(note.subjectCode)} - ${escapeHtml(note.subject)}</p>
+          <p>${escapeHtml(note.teacher)} uploaded ${new Date(note.createdAt).toLocaleString()}.</p>
+        </div>
+      </article>
+    `).join('');
+  }
 }
 
 async function deleteStudent(id) {
@@ -175,7 +237,7 @@ function logout() {
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     setStatus('Loading campus records...', 'info');
-    await Promise.all([loadStudents(), loadTeachers(), loadLogs()]);
+    await Promise.all([loadStudents(), loadTeachers(), loadLogs(), loadAcademicOverview()]);
     clearStatus();
   } catch (error) {
     setStatus(error.message || 'Unable to load dashboard.', 'error');
